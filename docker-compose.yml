@@ -1,0 +1,43 @@
+version: "3"
+services:
+  pg_master_1:
+     build: ./master
+     ports:
+         - "15432:5432"
+     volumes:
+         - mdata:/var/lib/postgresql/data
+     environment:
+         - POSTGRES_USER=postgres
+#         - POSTGRES_PASSWORD=123456
+         - POSTGRES_HOST_AUTH_METHOD=trust
+         - POSTGRES_DB=postgresdb
+         - PG_REP_USER=postgres
+         - PG_REP_PASSWORD=postgres
+     networks:
+            - default
+#           - bridge
+     restart: always
+  pg_slave_1:
+     build: ./slave
+     ports:
+         - "15433:5432"
+     volumes:
+         - sdata:/var/lib/postgresql/data
+     environment:
+         - POSTGRES_USER=postgres
+#         - POSTGRES_PASSWORD=123456
+         - POSTGRES_HOST_AUTH_METHOD=trust
+         - POSTGRES_DB=postgresdb
+         - PG_REP_USER=postgres
+         - PG_REP_PASSWORD=postgres
+     networks:
+            - default
+#           - bridge
+     restart: always
+volumes:
+  mdata:
+  sdata:
+networks:
+  bridge:
+    external: 
+      name: bridge
