@@ -8,4 +8,4 @@ Run the following command to create this directory on your own machine:
 
 Then in the docker-pg-cluster directory, run:
 
-**docker-compose up**
+**docker-compose up -d**
