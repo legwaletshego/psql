@@ -10,11 +10,12 @@ services:
          - POSTGRES_USER=postgres
 #         - POSTGRES_PASSWORD=123456
          - POSTGRES_HOST_AUTH_METHOD=trust
-         - POSTGRES_DB=postgresdb
+         - POSTGRES_DB=test
          - PG_REP_USER=postgres
          - PG_REP_PASSWORD=postgres
      networks:
-            - default
+            - test
+#            - default
 #           - bridge
      restart: always
   pg_slave_1:
@@ -27,11 +28,12 @@ services:
          - POSTGRES_USER=postgres
 #         - POSTGRES_PASSWORD=123456
          - POSTGRES_HOST_AUTH_METHOD=trust
-         - POSTGRES_DB=postgresdb
+         - POSTGRES_DB=test
          - PG_REP_USER=postgres
          - PG_REP_PASSWORD=postgres
      networks:
-            - default
+            - test
+#            - default
 #           - bridge
      restart: always
 volumes:
